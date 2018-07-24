@@ -14,7 +14,7 @@ import android.widget.ImageView;
 public class Formulario extends AppCompatActivity {
 static final int requestCamara =10;
 ImageView vistaPrevia;
-Button camara;
+Button camara,ubicacion;
 
 
     @Override
@@ -29,6 +29,16 @@ Button camara;
             @Override
             public void onClick(View view) {
                 tomarFoto();
+            }
+        });
+
+        ubicacion = findViewById(R.id.bUbicacion);
+
+        ubicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent map= new Intent(Formulario.this,MapsActivity.class);
+                startActivity(map);
             }
         });
 
