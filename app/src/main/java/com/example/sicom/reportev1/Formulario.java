@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class Formulario extends AppCompatActivity {
-static final int requestCamara =1;
+static final int requestCamara =10;
 ImageView vistaPrevia;
 Button camara;
 
