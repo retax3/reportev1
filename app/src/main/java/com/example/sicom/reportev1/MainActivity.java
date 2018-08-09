@@ -9,9 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class  MainActivity extends AppCompatActivity {
-Button btnIngresar;
-EditText nombre,apellidos,rut;
-String strName,strSecondNames,strRUT;
+Button btnIngresar,btnRegistrarse;
+EditText rut;
+String strRUT;
 
 
     @Override
@@ -19,30 +19,36 @@ String strName,strSecondNames,strRUT;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnIngresar = findViewById(R.id.bIngresar);
-        nombre = findViewById(R.id.editNombre);
-        apellidos = findViewById(R.id.editApellido);
+        btnIngresar = findViewById(R.id.bIngresarInsidencia);
         rut = findViewById(R.id.editRUT);
 
+
+        /*al presioanr boton ingresar valida al usuario por rut,en caso contrario envia un mensaje para que
+        ingrese rut valido o se registre el usuario */
         btnIngresar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 strRUT=rut.getText().toString();
-                strName=nombre.getText().toString();
-                strSecondNames=apellidos.getText().toString();
 
-                if (validarRut(strRUT)==true) {
-                    if (strName != null && strSecondNames != null) {
-                        Intent intent = new Intent(MainActivity.this, Categorias.class);
-                        startActivity(intent);
-                    }
-                    else Toast.makeText(MainActivity.this, "Por favor " +
-                                    "llene todos los campos"
-                            , Toast.LENGTH_SHORT).show();
+                if (validarRut(strRUT)) {
+                    Toast.makeText(MainActivity.this,"Usuario correcto",
+                            Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(MainActivity.this,Categorias.class);
+                    startActivity(intent);
                 }
-                else Toast.makeText(MainActivity.this, "Su RUT es invalido intente otra vez", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(MainActivity.this, "Su RUT es invalido " +
+                        "o Usuario no registrado", Toast.LENGTH_SHORT).show();
             }
         });
+
+   /*     btnRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,Registrarse.class);
+                startActivity(intent);
+
+            }
+        });*/
     }
 
     private static boolean validarRut(String rut){
